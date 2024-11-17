@@ -23,16 +23,13 @@ const App = () => {
   const handleGoBack = () => {
     setIsChatting(false);
   };
+
   return (
     <div className="container">
       {!isChatting ? (
-        <ChatBotStart
-          onStartChat={handleStartChat}
-          chats={chats}
-          setChats={setChats}
-        />
+        <ChatBotStart onStartChat={handleStartChat} />
       ) : (
-        <ChatBotApp onGoBack={handleGoBack} />
+        <ChatBotApp onGoBack={handleGoBack} chats={chats} setChats={setChats} />
       )}
     </div>
   );
