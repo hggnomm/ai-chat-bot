@@ -9,17 +9,17 @@ const ChatBotApp = () => {
           <h2>Chat List</h2>
           <i className="bx bx-edit-alt new-chat"></i>
         </div>
-        <div className="chat-list-item">
+        <div className="chat-list-item active">
           <h4>Chat 20/07/2024 12:59:42 PM</h4>
-          <i className="bx bx-x circle"></i>
+          <i className="bx bx-x-circle"></i>
         </div>
         <div className="chat-list-item">
           <h4>Chat 20/07/2024 12:59:42 PM</h4>
-          <i className="bx bx-x circle"></i>
+          <i className="bx bx-x-circle"></i>
         </div>
         <div className="chat-list-item">
           <h4>Chat 20/07/2024 12:59:42 PM</h4>
-          <i className="bx bx-x circle"></i>
+          <i className="bx bx-x-circle"></i>
         </div>
       </div>
       <div className="chat-window">
@@ -31,7 +31,7 @@ const ChatBotApp = () => {
           <div className="prompt">
             Hi, how are you? <span>12:59:51 PM </span>
           </div>
-          <div className="prompt">
+          <div className="response">
             Hello! I'm just a computer program, so I don't have feelings, but
             I'm here and ready to assist you? How can I help you today?
             <span>12:59:52 PM </span>
@@ -39,14 +39,13 @@ const ChatBotApp = () => {
           <div className="typing">Typing...</div>
         </div>
         <form className="msg-form">
-          <i className="fa-solid fa-face smile emoji">
-            <input
-              placeholder="Type a message..."
-              type="text"
-              className="msg-input"
-            />
-            <i className="fa-solid fa-paper-plane"></i>
-          </i>
+          <i className="fa-solid fa-face-smile emoji"></i>
+          <input
+            placeholder="Type a message..."
+            type="text"
+            className="msg-input"
+          />
+          <i className="fa-solid fa-paper-plane"></i>
         </form>
       </div>
     </div>
