@@ -58,6 +58,11 @@ const ChatBotApp = ({ onGoBack, chats, setChats }) => {
           <div className="prompt">
             Hi, how are you? <span>12:59:51 PM </span>
           </div>
+          <div className="response">
+            Hello! I'm just a computer program, so I don't have feelings, but
+            I'm here and ready to assist you? How can I help you today?
+            <span>12:59:52 PM </span>
+          </div>
            <div className="typing">Typing...</div>
         </div>
         <form className="msg-form">
