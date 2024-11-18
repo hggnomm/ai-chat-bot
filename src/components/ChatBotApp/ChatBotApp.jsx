@@ -23,7 +23,7 @@ const ChatBotApp = ({
     console.log(e.target.value);
   };
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (inputValue.trim() === "") return;
 
     const newMessage = {
@@ -50,6 +50,44 @@ const ChatBotApp = ({
       });
 
       setChats(updatedChats);
+
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_API_OPENAI_KEY}`,
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: inputValue }],
+            max_tokens: 500,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      const chatResponse = data.choices[0].messages.content.trim();
+
+      const newResponse = {
+        type: "response",
+        text: chatResponse,
+        timestamp: new Date().toLocaleTimeString(),
+      };
+
+      const updatedMessagesWithResponse = [...updatedMessages, newResponse];
+
+      setMessages(updatedMessagesWithResponse);
+
+      const updatedChatsWithResponse = chats.map((chat) => {
+        if (chat.id === activeChat) {
+          return { ...chat, messages: updatedMessagesWithResponse };
+        }
+        return chat;
+      });
+      setChats(updatedChatsWithResponse);
     }
   };
 
@@ -82,7 +120,10 @@ const ChatBotApp = ({
       <div className="chat-list">
         <div className="chat-list-header">
           <h2>Chat List</h2>
-          <i className="bx bx-edit-alt new-chat" onClick={() => onNewChat()}></i>
+          <i
+            className="bx bx-edit-alt new-chat"
+            onClick={() => onNewChat()}
+          ></i>
         </div>
         {chats.map((chat) => (
           <div
