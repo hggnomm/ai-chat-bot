@@ -17,6 +17,7 @@ const ChatBotApp = ({
 
     setMessages(activeChatWithID ? activeChatWithID.messages : []);
   }, [activeChat, chats]);
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
     console.log(e.target.value);
@@ -81,7 +82,7 @@ const ChatBotApp = ({
       <div className="chat-list">
         <div className="chat-list-header">
           <h2>Chat List</h2>
-          <i className="bx bx-edit-alt new-chat" onClick={onNewChat}></i>
+          <i className="bx bx-edit-alt new-chat" onClick={() => onNewChat()}></i>
         </div>
         {chats.map((chat) => (
           <div

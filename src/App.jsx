@@ -20,7 +20,7 @@ const App = () => {
     setIsChatting(false);
   };
 
-  const createNewChat = (initialMessage = "") => {
+  const createNewChat = (initialMessage = '') => {
     const newChat = {
       id: uuidv4(),
       displayId: `Chat ${new Date().toLocaleDateString(
