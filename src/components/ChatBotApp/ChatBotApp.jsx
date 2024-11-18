@@ -7,6 +7,7 @@ const ChatBotApp = ({ onGoBack, chats, setChats }) => {
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+    console.log(e.target.value);
   };
 
   const sendMessage = () => {
@@ -19,6 +20,7 @@ const ChatBotApp = ({ onGoBack, chats, setChats }) => {
     };
 
     const updatedMessages = [...messages, newMessage];
+
     setMessages(updatedMessages);
     setInputValue("");
 
@@ -30,6 +32,13 @@ const ChatBotApp = ({ onGoBack, chats, setChats }) => {
     });
 
     setChats(updatedChats);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
   };
 
   return (
@@ -55,24 +64,28 @@ const ChatBotApp = ({ onGoBack, chats, setChats }) => {
           <i className="bx bx-arrow-back arrow" onClick={onGoBack}></i>
         </div>
         <div className="chat">
-          <div className="prompt">
-            Hi, how are you? <span>12:59:51 PM </span>
-          </div>
-          <div className="response">
-            Hello! I'm just a computer program, so I don't have feelings, but
-            I'm here and ready to assist you? How can I help you today?
-            <span>12:59:52 PM </span>
-          </div>
-           <div className="typing">Typing...</div>
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={msg.type === "prompt" ? "prompt" : "response"}
+            >
+              {msg.text} <span>{msg.timestamp} </span>
+            </div>
+          ))}
+
+          <div className="typing">Typing...</div>
         </div>
-        <form className="msg-form">
+        <form className="msg-form" onSubmit={(e) => e.preventDefault()}>
           <i className="fa-solid fa-face-smile emoji"></i>
           <input
             placeholder="Type a message..."
             type="text"
             className="msg-input"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
-          <i className="fa-solid fa-paper-plane"></i>
+          <i className="fa-solid fa-paper-plane" onClick={sendMessage}></i>
         </form>
       </div>
     </div>
