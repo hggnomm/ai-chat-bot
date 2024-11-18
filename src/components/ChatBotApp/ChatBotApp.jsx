@@ -72,7 +72,7 @@ const ChatBotApp = ({
             }`}
             onClick={() => handleSelectChat(chat.id)}
           >
-            <h4>{chat.id}</h4>
+            <h4>{chat.displayId}</h4>
             <i className="bx bx-x-circle"></i>
           </div>
         ))}
