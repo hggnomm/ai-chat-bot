@@ -31,19 +31,25 @@ const ChatBotApp = ({
       timestamp: new Date().toLocaleTimeString(),
     };
 
-    const updatedMessages = [...messages, newMessage];
+    // Its handle when user type and entering input prompt. Its going to be create the new chat
+    if (!activeChat) {
+      onNewChat(inputValue);
+      setInputValue("");
+    } else {
+      const updatedMessages = [...messages, newMessage];
 
-    setMessages(updatedMessages);
-    setInputValue("");
+      setMessages(updatedMessages);
+      setInputValue("");
 
-    const updatedChats = chats.map((chat) => {
-      if (chat.id === activeChat) {
-        return { ...chat, messages: updatedMessages };
-      }
-      return chat;
-    });
+      const updatedChats = chats.map((chat) => {
+        if (chat.id === activeChat) {
+          return { ...chat, messages: updatedMessages };
+        }
+        return chat;
+      });
 
-    setChats(updatedChats);
+      setChats(updatedChats);
+    }
   };
 
   const handleKeyDown = (e) => {
