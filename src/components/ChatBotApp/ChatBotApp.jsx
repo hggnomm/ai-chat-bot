@@ -63,6 +63,7 @@ const ChatBotApp = ({
     setChats(updatedChats);
 
     if (id === activeChat) {
+      // This profession will be active when the chat item curently is delete, is move next the first item in the Chat list
       const newActiveChat = updatedChats.length > 0 ? updatedChats[0].id : null;
 
       setActiveChat(newActiveChat);
