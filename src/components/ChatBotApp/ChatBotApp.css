@@ -82,7 +82,7 @@
   align-items: center;
   justify-content: space-between;
   color: #fff;
-  padding-right: 2rem;
+  padding: 0 2rem;
 }
 
 .chat-title h3 {
@@ -199,4 +199,59 @@
 
 .msg-input:focus::placeholder {
     opacity: 0;
+}
+.bx-x-circle, .bx-menu {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .bx-x-circle, .bx-menu {
+    display: inline-block;
+  }
+
+  .chat-app {
+    flex-direction: column;
+  }
+
+  .chat-list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .chat-list.show {
+    transform: translateX(0);
+    transition: 0.4s
+  }
+
+  .chat-window {
+    width: 100%;
+  }
+  
+  .chat-title h3 {
+    padding-left: 5rem;
+  }
+
+  .chat-title i.bx-menu {
+    font-size: 3rem;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+  }
+}
+
+@media (max-width: 500px) {
+  .chat-list {
+    width: 60%;
+  }
+  
+  .picker {
+    bottom: 7rem;
+    left: 1rem;
+  }
 }
