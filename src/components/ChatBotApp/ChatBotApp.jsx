@@ -221,6 +221,7 @@ const ChatBotApp = ({
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            onFocus={() => setShowEmojiPicker(false)}
           />
           <i className="fa-solid fa-paper-plane" onClick={sendMessage}></i>
         </form>
