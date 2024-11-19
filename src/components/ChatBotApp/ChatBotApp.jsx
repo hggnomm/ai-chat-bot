@@ -11,7 +11,7 @@ const ChatBotApp = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState(chats[0]?.messages || []);
-
+  const [isTyping, setIsTyping] = useState(false);
   useEffect(() => {
     const activeChatWithID = chats.find((chat) => chat.id === activeChat);
 
@@ -49,6 +49,7 @@ const ChatBotApp = ({
       });
 
       setChats(updatedChats);
+      setIsTyping(true);
 
       try {
         const response = await fetch(
@@ -107,6 +108,7 @@ const ChatBotApp = ({
 
         const updatedMessagesWithError = [...updatedMessages, errorResponse];
         setMessages(updatedMessagesWithError);
+        setIsTyping(false);
 
         const updatedChatsWithError = chats.map((chat) => {
           if (chat.id === activeChat) {
@@ -187,8 +189,7 @@ const ChatBotApp = ({
               {msg.text} <span>{msg.timestamp} </span>
             </div>
           ))}
-
-          <div className="typing">Typing...</div>
+          {isTyping && <div className="typing">Typing...</div>}
         </div>
         <form className="msg-form" onSubmit={(e) => e.preventDefault()}>
           <i className="fa-solid fa-face-smile emoji"></i>
