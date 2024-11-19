@@ -100,13 +100,18 @@
 }
 
 .chat {
-  width: 100%;
+  width: 100%; 
   flex-grow: 1;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   color: #fff;
   gap: 3rem;
+  overflow-y: auto;
+}
+
+.chat::-webkit-scrollbar {
+  display: none;
 }
 
 .prompt,
