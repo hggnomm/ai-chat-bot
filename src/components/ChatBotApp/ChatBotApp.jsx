@@ -17,6 +17,7 @@ const ChatBotApp = ({
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+  
   useEffect(() => {
     const activeChatWithID = chats.find((chat) => chat.id === activeChat);
 
