@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ChatBotApp.css";
 
 const ChatBotApp = ({
@@ -12,6 +12,11 @@ const ChatBotApp = ({
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState(chats[0]?.messages || []);
   const [isTyping, setIsTyping] = useState(false);
+  const chatEndRef = useRef();
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   useEffect(() => {
     const activeChatWithID = chats.find((chat) => chat.id === activeChat);
 
@@ -190,6 +195,7 @@ const ChatBotApp = ({
             </div>
           ))}
           {isTyping && <div className="typing">Typing...</div>}
+          <div ref={chatEndRef}></div>
         </div>
         <form className="msg-form" onSubmit={(e) => e.preventDefault()}>
           <i className="fa-solid fa-face-smile emoji"></i>
